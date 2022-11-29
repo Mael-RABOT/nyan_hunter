@@ -1,4 +1,3 @@
-<text>
 <Nyan hunt>
 
     During the transport of several nyan inmates, an accident occur aboard the spaceship, causing it to let all the nyan fly away !
