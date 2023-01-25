@@ -10,14 +10,14 @@
 void manage_click(sfMouseButtonEvent event, sfVector2f *last_clic,
     int *bullet, sfRenderWindow *window)
 {
-    last_clic->x = event.x;
-    last_clic->y = event.y;
+    last_clic->x = (float) event.x;
+    last_clic->y = (float) event.y;
 }
 
 void menu_clic(sfMouseButtonEvent event, sfVector2f *last_clic)
 {
-    last_clic->x = event.x;
-    last_clic->y = event.y;
+    last_clic->x = (float) event.x;
+    last_clic->y = (float) event.y;
 }
 
 void analyse_event(sfRenderWindow *window, sfEvent event,

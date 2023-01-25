@@ -40,14 +40,17 @@ int upt_btn(sfRenderWindow *window, sfSprite **list,
     return (0);
 }
 
-int window_selector(sfRenderWindow *window, sfEvent event, int selection)
+int window_selector(sfRenderWindow *window, sfEvent event, int selection,
+    arguments_t *args)
 {
     switch (selection) {
         case 0:
             break;
         case LAUNCH_GAME:
             sfRenderWindow_display(window);
-            game_loop(window, event, NYAN_NUMBER);
+            int nyan_nb = (args->nyan_number == 0)
+                ? NYAN_NUMBER : args->nyan_number;
+            game_loop(window, event, nyan_nb, args);
             break;
         case EXIT_WINDOW:
             sfRenderWindow_display(window);
@@ -57,10 +60,9 @@ int window_selector(sfRenderWindow *window, sfEvent event, int selection)
     return (EXIT_FAILURE);
 }
 
-void menu(sfRenderWindow *window, sfEvent event)
+void menu(sfRenderWindow *window, sfEvent event, arguments_t *args)
 {
     sfSprite **sprite_list = create_sprite_list(window);
-    sfClock *clock = sfClock_create();
     sfTexture *bck = sfTexture_createFromFile("ress/bg_sheet3.png", NULL);
     sfSprite *back = sfSprite_create();
     sfVector2f mvment = {-1, 0};
@@ -74,8 +76,10 @@ void menu(sfRenderWindow *window, sfEvent event)
         sfRenderWindow_drawSprite(window, back, NULL);
         sfSprite_move(back, mvment);
         draw_sprites(window, sprite_list, 4);
-        window_selector(window, event, upt_btn(window, sprite_list, &lst_c));
+        window_selector(window, event,
+            upt_btn(window, sprite_list, &lst_c), args);
         move_ptr(window, sprite_list[4]);
         sfRenderWindow_display(window);
     }
+    menu_garbage(sprite_list);
 }

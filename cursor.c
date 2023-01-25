@@ -18,9 +18,9 @@ sfSprite *make_ptr(void)
 
 void move_ptr(sfRenderWindow *window, sfSprite *sprite)
 {
-    sfVector2f vect;
-    vect.x = sfMouse_getPositionRenderWindow(window).x - 20;
-    vect.y = sfMouse_getPositionRenderWindow(window).y - 20;
-    sfSprite_setPosition(sprite, vect);
+    sfVector2f position;
+    position.x = (float) sfMouse_getPositionRenderWindow(window).x - 20;
+    position.y = (float) sfMouse_getPositionRenderWindow(window).y - 20;
+    sfSprite_setPosition(sprite, position);
     sfRenderWindow_drawSprite(window, sprite, NULL);
 }

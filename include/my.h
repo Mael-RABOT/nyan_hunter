@@ -11,10 +11,12 @@
     #define MIN(x, y) (((x) < (y)) ? (x) : (y))
     #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 
-    #define EXIT_WINDOW -42
-    #define LAUNCH_GAME 42
-    #define HEALT_NUMBER 1
+    #define EXIT_WINDOW (-42)
+    #define LAUNCH_GAME 20
+    #define HEALT_NUMBER 2
     #define NYAN_NUMBER 4
+    #define BULLET_NUMBER 99
+    #define SCORE_TO_WIN 100
 
     #include "mylib.h"
     #include "my_printf.h"
@@ -50,13 +52,16 @@
     int update_nyan(nyan_t **list, sfRenderWindow *window,
                     sfIntRect rect, sfVector2f *last_clic);
     int nyan_pos(nyan_t *nyan, sfRenderWindow *window);
+    int randm_i(int min, int max);
+    int my_getnbr(const char *buffer);
+
+    unsigned int my_getnbr_parser(const char *buffer);
 
     float randm(int min, int max);
 
     char *int_to_nbr(int nb);
-    int randm_i(int min, int max);
 
-    void menu(sfRenderWindow *window, sfEvent event);
+    void menu(sfRenderWindow *window, sfEvent event, arguments_t *arguments);
     void fail_window(sfRenderWindow *window);
     void victory_window(sfRenderWindow *window);
 
@@ -64,8 +69,6 @@
 
     nyan_t *create_nyan(int i);
 
-    void check_victory(sfRenderWindow *window, int num,
-        nyan_t **list, int bullet);
     void move_rect(sfIntRect *rect, int offset, int max_value, sfClock *clock);
     void manage_click(sfMouseButtonEvent event, sfVector2f *last_clic,
         int *bullet, sfRenderWindow *window);
@@ -74,21 +77,24 @@
     void check_close(sfRenderWindow *window, sfEvent event,
         sfVector2f *last_clic);
     void move_ptr(sfRenderWindow *window, sfSprite *sprite);
-    void game_loop(sfRenderWindow *window, sfEvent event, int num);
+    void game_loop(sfRenderWindow *window, sfEvent event, int num,
+        arguments_t *arguments);
     void check_victory(sfRenderWindow *window, int num, nyan_t **list,
         int bullet);
     void close_event(sfRenderWindow *window);
     void explosion_sprites(nyan_t **list, sfRenderWindow *window, int i);
     void explo_sound(nyan_t *nyan);
+    void garbage(m_sprites_t *list);
+    void menu_garbage(sfSprite **list);
+    void launch_music(int music_id);
 
     sfText **create_texts(sfRenderWindow *window, int health);
-
 
     sfSprite **create_sprite_list(sfRenderWindow *window);
 
     sfSprite *make_ship(void);
     sfSprite *make_background(void);
-    sfRenderWindow *create_window(unsigned int width, unsigned int height);
+    sfRenderWindow *create_window(arguments_t *arguments);
     sfSprite *make_ptr(void);
     sfSprite **game_sprites(sfRenderWindow *window);
 

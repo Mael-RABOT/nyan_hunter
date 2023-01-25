@@ -7,70 +7,84 @@
 
 #include "include/my.h"
 
-int my_getnbr(const char *buffer)
+void print_man(void)
 {
-    int i = 0;
-    int res = 0;
-    int mult = 1;
-    int is_neg = (buffer[0] == '-') ? 1 : 0;
-    while (buffer[i] != '\n' && buffer[i] != '\0')
-        i++;
-    for (int ite = is_neg; ite < i; ite++) {
-        res += (buffer[i - ite - 1 + is_neg] - 48) * mult;
-        mult = mult * 10;
-    }
-    return (is_neg == 1) ? -res : res;
+    struct stat sb;
+    int fd = open("README.txt", O_RDONLY);
+    int size = 3000;
+    char buff[size + 1];
+    read(fd, buff, size);
+    my_printf("%s", buff);
 }
 
-int print_rules(int nb, char **arguments)
+void assign_data_bis(char const *arg, char *value, arguments_t **arguments)
 {
-    int number = 1;
-    if (nb >= 2) {
-        if (arguments[1][0] == '-' && arguments[1][1] == 'h') {
-            int fd = open("rules.txt", O_RDONLY);
-            char buff[30000];
-            read(fd, buff, 29999);
-            my_printf("%s", buff);
-            return (42);
-        } else
-            number = my_getnbr(arguments[1]);
+    switch (arg[1]) {
+        case 'S':
+            (*arguments)->score_to_win = (int) my_getnbr_parser(value);
+            break;
+        case 'M':
+            (*arguments)->music_id = (int) my_getnbr_parser(value);
+            break;
     }
-    if (number < 0 || number > 4)
-        number = 1;
-    return (number);
 }
 
-char *choose_music(int selector)
+void assign_data(char const *arg, char *value, arguments_t **arguments)
 {
-    if (selector < 0 || selector > 4)
-        return (NULL);
-    switch (selector) {
-        case 0: return ("ress/nya_arigato.ogg");
-        case 1: return ("ress/nyan_music.ogg");
-        case 2: return ("ress/chad_music.ogg");
-        case 3: return ("ress/suuu.ogg");
-        case 4: return ("ress/rick.ogg");
+    if (arg[0] != '-')
+        return;
+    switch (arg[1]) {
+        case 'h':
+            (*arguments)->print = 1;
+            break;
+        case 'H':
+            (*arguments)->size.height = (int) my_getnbr_parser(value);
+            break;
+        case 'W':
+            (*arguments)->size.width = (int) my_getnbr_parser(value);
+            break;
+        case 'E':
+            (*arguments)->nyan_number = (int) my_getnbr_parser(value);
+            break;
+        case 'L':
+            (*arguments)->live = (int) my_getnbr_parser(value);
+            break;
     }
+    assign_data_bis(arg, value, arguments);
+}
+
+arguments_t *parser(int ac, char **av)
+{
+    arguments_t *res;
+    res = malloc(sizeof(arguments_t));
+    res->size.width = 0;
+    res->size.height = 0;
+    res->nyan_number = 0;
+    res->live = 0;
+    res->score_to_win = 0;
+    res->music_id = 0;
+    res->print = 0;
+    for (int i = 0; i < ac - 1; i++)
+        assign_data(av[i], av[i + 1], &res);
+    res->print = (av[ac - 1][0] == '-' && av[ac - 1][1] == 'h')
+        ? 1 : res->print;
+    return (res);
 }
 
 int main(int ac, char **av)
 {
-    int music = print_rules(ac, av);
-    if (music == 42)
+    arguments_t *arguments = parser(ac, av);
+    if (arguments->print) {
+        print_man();
         return (EXIT_SUCCESS);
-    sfSoundBuffer *buff = sfSoundBuffer_createFromFile(choose_music(music));
-    sfSound *sound = sfSound_create();
-    sfSound_setBuffer(sound, buff);
-    sfSound_setVolume(sound, 40);
-    sfSound_play(sound);
-    sfSound_setLoop(sound, sfTrue);
+    }
+    launch_music(arguments->music_id);
     srand(time(NULL));
-    sfRenderWindow *window = create_window(1920, 1080);
+    sfRenderWindow *window = create_window(arguments);
     sfEvent event;
     sfRenderWindow_setFramerateLimit(window, 60);
     sfRenderWindow_setMouseCursorVisible(window, sfFalse);
-    menu(window, event);
-    sfVector2f vect = {400, 400};
+    menu(window, event, arguments);
     sfRenderWindow_destroy(window);
-    return EXIT_SUCCESS;
+    return (EXIT_SUCCESS);
 }

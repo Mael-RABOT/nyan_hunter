@@ -24,7 +24,7 @@ fclean:	clean
 	rm -f *.out
 
 cpl:
-	cd lib && make re && make clean && cd ..
+	cd lib && make && make clean && cd ..
 
 re: cpl fclean all
 

@@ -30,7 +30,7 @@ int game_render(m_sprites_t *list, sfIntRect rect, sfVector2f *last_clic,
                 sfText **text)
 {
     sfRenderWindow_drawSprite(list->window, list->s_list[1], NULL);
-    int res = update_nyan(list->n_list, list->window, rect, last_clic);
+    int new_score = update_nyan(list->n_list, list->window, rect, last_clic);
     sfRenderWindow_drawSprite(list->window, list->s_list[2], NULL);
     sfRenderWindow_drawSprite(list->window, list->s_list[3], NULL);
     sfRenderWindow_drawSprite(list->window, list->s_list[4], NULL);
@@ -39,5 +39,5 @@ int game_render(m_sprites_t *list, sfIntRect rect, sfVector2f *last_clic,
     sfRenderWindow_drawText(list->window, text[1], NULL);
     sfRenderWindow_drawText(list->window, text[2], NULL);
     move_ptr(list->window, list->s_list[0]);
-    return (res);
+    return (new_score);
 }

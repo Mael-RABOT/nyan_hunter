@@ -37,4 +37,19 @@ typedef struct score {
     int health;
 } score_t;
 
+typedef struct win_size {
+    int width;
+    int height;
+} win_size_t;
+
+typedef struct arguments {
+    win_size_t size;
+    int live;
+    int nyan_number;
+    int score_to_win;
+    int music_id;
+    int print;
+} arguments_t;
+
+
 #endif /* !B_MUL_100_LYN_1_1_MYHUNTER_MAEL_RABOT_MY_STRUCTS_H_ */
