@@ -1,17 +1,16 @@
-<Nyan hunt>
+#Nyan hunt
 
     During the transport of several nyan inmates, an accident occur aboard the spaceship, causing it to let all the nyan fly away !
 
     Agent Smith, you're the only one near the spaceship capable of stopping them, the syndicate count on you !!!
 
-    <Rules>
+#Rules
 
         - Armed with your omega laser, you will be tasked to annihilate all of the f****** nyans !
         - At every murder you do, we'll reward you with lots and lots of fluff !
         - Nyans are vicious little creatures, DO NOT, by any means, think that they're cute little kitties !
         - To win, you need to defeat one hundred of those monsters !
-    </Rules>
-    <Man>
+#<Man>
 
         SYNOPSIS
             ./my_hunter [OPTION] ...
@@ -43,16 +42,14 @@
 
         EXEMPLE
             ./my_hunter -L 3 -M 5
-    </Man>
-    <Inputs>
+#Inputs
 
         - On your omega laser, you will find two very useful things :
             - A trackpad
             - A mouse button
 
         - Using both of those high tech input devices, you should be able to aim the mouse pointer onto the monstrous nyans
-    </Inputs>
-    <Musics>
+#Musics
 
         Below are all the music id usable with -m:
             - 0: The official Nyan music, made for the game.
@@ -61,5 +58,3 @@
             - 3: SUUUUUUUUU!
             - 4: You should not try it, trust me.
             - 5: For those who like silence.
-    </Musics>
-</Nyan hunt>
