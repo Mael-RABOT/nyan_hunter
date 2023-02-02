@@ -18,20 +18,20 @@
 ## DESCRIPTION
 ###### Execute the game with parameters according to OPTION
 
-&emsp;&emsp;-h
-&emsp;&emsp;&emsp;&emsp;display the help and exit
-&emsp;&emsp;-H=HEIGHT
-&emsp;&emsp;&emsp;&emsp;select a window height, the value has to be between 600 and 1080, 1080 by default
-&emsp;&emsp;-W=WIDTH
-&emsp;&emsp;&emsp;&emsp;select a window width, the value has to be between 800 and 1920, 1920 by default
-&emsp;&emsp;-E=NUMBER
-&emsp;&emsp;&emsp;&emsp;select how many enemies will appear on the screen at the same time, 4 by defaults
-&emsp;&emsp;-L=NUMBER
-&emsp;&emsp;&emsp;&emsp;select the number of lives, 2 by default
-&emsp;&emsp;-S=NUMBER
-&emsp;&emsp;&emsp;&emsp;select the score needed to win, 100 by defaults (the score shown to the player is multiplied by a thousand)
-&emsp;&emsp;-M=ID
-&emsp;&emsp;&emsp;&emsp;select the music to be played during the game; more info into Musics
+&emsp;&emsp;-h<br/>
+&emsp;&emsp;&emsp;&emsp;display the help and exit<br/>
+&emsp;&emsp;-H=HEIGHT<br/>
+&emsp;&emsp;&emsp;&emsp;select a window height, the value has to be between 600 and 1080, 1080 by default<br/>
+&emsp;&emsp;-W=WIDTH<br/>
+&emsp;&emsp;&emsp;&emsp;select a window width, the value has to be between 800 and 1920, 1920 by default<br/>
+&emsp;&emsp;-E=NUMBER<br/>
+&emsp;&emsp;&emsp;&emsp;select how many enemies will appear on the screen at the same time, 4 by defaults<br/>
+&emsp;&emsp;-L=NUMBER<br/>
+&emsp;&emsp;&emsp;&emsp;select the number of lives, 2 by default<br/>
+&emsp;&emsp;-S=NUMBER<br/>
+&emsp;&emsp;&emsp;&emsp;select the score needed to win, 100 by defaults (the score shown to the player is multiplied by a thousand)<br/>
+&emsp;&emsp;-M=ID<br/>
+&emsp;&emsp;&emsp;&emsp;select the music to be played during the game; more info into Musics<br/>
 
 ## Exit status:
 &emsp;&emsp;0   if OK,
